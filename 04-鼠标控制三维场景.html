@@ -42,7 +42,7 @@
         // 创建地面的几何体
         var planeGeometry = new THREE.PlaneGeometry(60, 20)
         // 给地面物体上色
-        var planeMaterial = new THREE.MeshBasicMaterial({ color: 0xcccccc })
+        var planeMaterial = new THREE.MeshStandardMaterial({ color: 0xcccccc })
 
         // 创建地面
         var plane = new THREE.Mesh(planeGeometry, planeMaterial)
@@ -84,6 +84,14 @@
         var spotLight = new THREE.SpotLight(0xffffff)
         spotLight.position.set(130, 130, -130)
         spotLight.castShadow = true
+        // 聚光灯扩散的范围
+        spotLight.angle = Math.PI / 4
+        // 设置阴影衰减百分比
+        spotLight.shadow.penumbra = 0.05
+
+        // 设置阴影贴图精度
+        spotLight.shadow.mapSize.width = 1024
+        spotLight.shadow.mapSize.innerHeight = 1024
         // 添加聚光灯
         scene.add(spotLight)
 
